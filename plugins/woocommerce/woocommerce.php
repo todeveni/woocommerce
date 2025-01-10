@@ -65,3 +65,5 @@ $GLOBALS['woocommerce'] = WC();
 if ( class_exists( \Automattic\Jetpack\Connection\Rest_Authentication::class ) ) {
 	\Automattic\Jetpack\Connection\Rest_Authentication::init();
 }
+
+add_filter('woocommerce_use_new_branding', '__return_true');

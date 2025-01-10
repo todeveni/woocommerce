@@ -11,8 +11,10 @@ import { WooPaymentsMethodsLogos } from '@woocommerce/onboarding';
 import { getAdminSetting } from '~/utils/admin-settings';
 import sanitizeHTML from '~/lib/sanitize-html';
 import WooPaymentsLogo from './woopayments.svg';
+import WooPaymentsLogoNew from './woopayments-new.svg';
 import ExitSurveyModal from './exit-survey-modal';
 import strings from './strings';
+import { isNewBranding } from '~/utils/admin-settings';
 
 interface Props {
 	isSubmitted: boolean;
@@ -38,7 +40,12 @@ const Banner: React.FC< Props > = ( { isSubmitted, handleSetup } ) => {
 	return (
 		<Card className="__CLASS__">
 			<CardBody className="woopayments-welcome-page__header">
-				<img src={ WooPaymentsLogo } alt="WooPayments logo" />
+				<img
+					src={
+						isNewBranding() ? WooPaymentsLogoNew : WooPaymentsLogo
+					}
+					alt="WooPayments logo"
+				/>
 				<h1>{ strings.heading( first_name ) }</h1>
 			</CardBody>
 			<CardBody className="woopayments-welcome-page__offer">

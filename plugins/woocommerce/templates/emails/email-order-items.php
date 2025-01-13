@@ -41,12 +41,25 @@ foreach ( $items as $item_id => $item ) :
 					<?php
 					// Show title/image etc.
 					if ( $show_image ) {
+						/**
+						 * Email Order Item Thumbnail hook.
+						 *
+						 * @param string                $image The image HTML.
+						 * @param WC_Order_Item_Product $item  The item being displayed.
+						 * @since 2.1.0
+						 */
 						echo '<td>' . wp_kses_post( apply_filters( 'woocommerce_order_item_thumbnail', $image, $item ) ) . '</td>';
 					}
 					?>
 					<td>
 						<?php
-						// Product name.
+						/**
+						 * Order Item Name hook.
+						 *
+						 * @param string                $item_name The item name HTML.
+						 * @param WC_Order_Item_Product $item      The item being displayed.
+						 * @since 2.1.0
+						 */
 						echo wp_kses_post( apply_filters( 'woocommerce_order_item_name', $item->get_name(), $item, false ) );
 
 						// SKU.
@@ -54,12 +67,28 @@ foreach ( $items as $item_id => $item ) :
 							echo wp_kses_post( ' (#' . $sku . ')' );
 						}
 
-						// allow other plugins to add additional product information here.
+						/**
+						 * Allow other plugins to add additional product information.
+						 *
+						 * @param int                   $item_id    The item ID.
+						 * @param WC_Order_Item_Product $item       The item object.
+						 * @param WC_Order              $order      The order object.
+						 * @param bool                  $plain_text Whether the email is plain text or not.
+						 * @since 2.3.0
+						 */
 						do_action( 'woocommerce_order_item_meta_start', $item_id, $item, $order, $plain_text );
 
 						wc_display_item_meta( $item );
 
-						// allow other plugins to add additional product information here.
+						/**
+						 * Allow other plugins to add additional product information.
+						 *
+						 * @param int                   $item_id    The item ID.
+						 * @param WC_Order_Item_Product $item       The item object.
+						 * @param WC_Order              $order      The order object.
+						 * @param bool                  $plain_text Whether the email is plain text or not.
+						 * @since 2.3.0
+						 */
 						do_action( 'woocommerce_order_item_meta_end', $item_id, $item, $order, $plain_text );
 
 						?>

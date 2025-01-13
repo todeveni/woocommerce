@@ -182,6 +182,12 @@ body {
 	padding-top: 24px;
 }
 
+#body_content .order-item-data td {
+	border: 0 !important;
+	padding: 0 !important;
+	vertical-align: middle;
+}
+
 #body_content .order-totals td,
 #body_content .order-totals th {
 	font-weight: normal;
@@ -213,19 +219,27 @@ body {
 }
 
 #body_content td ul.wc-item-meta {
-	font-size: small;
-	margin: 1em 0 0;
+	font-size: 14px;
+	margin: 0;
 	padding: 0;
+	line-height: 140%;
 	list-style: none;
 }
 
 #body_content td ul.wc-item-meta li {
-	margin: 0.5em 0 0;
+	margin: 0;
 	padding: 0;
 }
 
 #body_content td ul.wc-item-meta li p {
 	margin: 0;
+}
+
+#body_content td .wc-item-meta-label {
+	clear: both;
+	float: <?php echo is_rtl() ? 'right' : 'left'; ?>;
+	font-weight: normal;
+	margin-<?php echo is_rtl() ? 'left' : 'right'; ?>: .25em;
 }
 
 #body_content p {

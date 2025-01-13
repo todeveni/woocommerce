@@ -109,7 +109,7 @@ class WC_Product extends WC_Abstract_Legacy_Product {
 		'rating_counts'      => array(),
 		'average_rating'     => 0,
 		'review_count'       => 0,
-		'cogs_value'         => 0,
+		'cogs_value'         => null,
 	);
 
 	/**
@@ -2215,12 +2215,26 @@ class WC_Product extends WC_Abstract_Legacy_Product {
 	 *
 	 * WARNING! If the Cost of Goods Sold feature is disabled this method will have no effect.
 	 *
-	 * @param float $value The value to set for this product.
+	 * @param float|null $value The value to set for this product.
 	 */
-	public function set_cogs_value( float $value ): void {
+	public function set_cogs_value( ?float $value ): void {
 		if ( $this->cogs_is_enabled( __METHOD__ ) ) {
+			$value = $this->adjust_cogs_value_before_set($value);
 			$this->set_prop( 'cogs_value', $value );
 		}
+	}
+
+	/**
+	 * Adjust the value of the Cost of Goods Sold before actually setting it.
+	 *
+	 * To disable the conversion of zero into null in a derived class,
+	 * override this method with just "return $value;" in the body.
+	 *
+	 * @param float|null $value Cost value passed to the set_cogs_value method.
+	 * @return float|null The actual value that will be set for the cost property.
+	 */
+	protected function adjust_cogs_value_before_set(?float $value): ?float {
+		return 0.0 === $value ? null : $value;
 	}
 
 	/**
@@ -2230,8 +2244,13 @@ class WC_Product extends WC_Abstract_Legacy_Product {
 	 *
 	 * @return float The current value for this product.
 	 */
-	public function get_cogs_value(): float {
-		return $this->cogs_is_enabled( __METHOD__ ) ? (float) $this->get_prop( 'cogs_value' ) : 0;
+	public function get_cogs_value(): ?float {
+		if ( ! $this->cogs_is_enabled( __METHOD__ ) ) {
+			return null;
+		}
+
+		$value = $this->get_prop( 'cogs_value' );
+		return is_null($value) ? null : (float)$value;
 	}
 
 	/**
@@ -2257,7 +2276,7 @@ class WC_Product extends WC_Abstract_Legacy_Product {
 	 * @return float The effective value for this product.
 	 */
 	protected function get_cogs_effective_value_core(): float {
-		return $this->get_cogs_value();
+		return $this->get_cogs_value() ?? 0;
 	}
 
 	/**

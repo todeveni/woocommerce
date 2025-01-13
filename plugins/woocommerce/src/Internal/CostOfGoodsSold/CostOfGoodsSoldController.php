@@ -3,6 +3,7 @@ declare( strict_types=1 );
 
 namespace Automattic\WooCommerce\Internal\CostOfGoodsSold;
 
+use Automattic\WooCommerce\Enums\ProductType;
 use Automattic\WooCommerce\Internal\Features\FeaturesController;
 use Automattic\WooCommerce\Internal\RegisterHooksInterface;
 
@@ -63,5 +64,9 @@ class CostOfGoodsSoldController implements RegisterHooksInterface {
 			__( 'Cost of Goods Sold', 'woocommerce' ),
 			$definition
 		);
+	}
+
+	public function is_cogs_aware_product(\WC_Product $product): bool {
+		return $product->is_type( ProductType::SIMPLE ) || $product->is_type( ProductType::EXTERNAL ) || $product->is_type( ProductType::VARIABLE );
 	}
 }

@@ -203,6 +203,32 @@ defined( 'ABSPATH' ) || exit;
 				?>
 			</div>
 
+            <?php if(!is_null($base_cost)) : ?>
+                <div class="variable_pricing">
+                    <?php
+                    $label = sprintf(
+                        /* translators: %s: currency symbol */
+                        __( 'Cost (%s)', 'woocommerce' ),
+                        get_woocommerce_currency_symbol()
+                    );
+
+                    woocommerce_wp_text_input(
+                        array(
+                            'id'            => "variable_cost_value_{$loop}",
+                            'name'          => "variable_cost_value[{$loop}]",
+                            'value'         => wc_format_localized_price( $variation_object->get_regular_price( 'edit' ) ),
+                            'label'         => $label,
+                            'data_type'     => 'price',
+                            'wrapper_class' => 'form-row form-row-first',
+                            'placeholder'   =>
+                                /* Translators: %s = cost of the item (monetary value) */
+                                sprintf(__('%s (base cost)', 'woocommerce'), wc_format_localized_price($base_cost)),
+                        )
+                    );
+                    ?>
+                </div>
+            <?php endif; ?>
+
 			<?php if ( 'yes' === get_option( 'woocommerce_manage_stock' ) ) : ?>
 				<div class="show_if_variation_manage_stock" style="display: none;">
 					<?php

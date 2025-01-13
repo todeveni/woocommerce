@@ -481,12 +481,13 @@ class WC_Admin_Post_Types {
 				$product->set_date_on_sale_to( '' );
 				$product->set_date_on_sale_from( '' );
 			}
-
-			if ( wc_get_container()->get( CostOfGoodsSoldController::class )->feature_is_enabled() ) {
-				$cogs_value = $request_data['_cogs_value'] ?? '0';
-				$product->set_cogs_value( (float) $cogs_value );
-			}
 		}
+
+        $cogs_controller = wc_get_container()->get( CostOfGoodsSoldController::class );
+        if ( $cogs_controller->feature_is_enabled() && $cogs_controller->is_cogs_aware_product($product) ) {
+            $cogs_value = $request_data['_cogs_value'] ?? '0';
+            $product->set_cogs_value( (float) $cogs_value );
+        }
 
 		// Handle Stock Data.
 		// phpcs:disable WordPress.Security.ValidatedSanitizedInput.MissingUnslash, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized

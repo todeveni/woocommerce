@@ -205,6 +205,13 @@ body {
 	padding-bottom: 24px;
 }
 
+#body_content .order-customer-note td {
+	border-bottom: 1px solid #ccc;
+	border-bottom: 1px solid rgba(0, 0, 0, .2);
+	padding-bottom: 24px;
+	padding-top: 24px;
+}
+
 #body_content td ul.wc-item-meta {
 	font-size: small;
 	margin: 1em 0 0;

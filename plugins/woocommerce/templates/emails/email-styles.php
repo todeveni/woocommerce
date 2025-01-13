@@ -247,9 +247,8 @@ body {
 }
 
 .address {
-	padding: 12px;
-	color: <?php echo esc_attr( $text_lighter_20 ); ?>;
-	border: 1px solid <?php echo esc_attr( $body_darker_10 ); ?>;
+	font-style: normal;
+	padding: 8px 0;
 }
 
 .additional-fields {
@@ -316,7 +315,7 @@ h3 {
 	font-family: <?php echo esc_attr( $font_family ); ?>;
 	font-size: 16px;
 	font-weight: bold;
-	line-height: 130%;
+	line-height: 160%;
 	margin: 16px 0 8px;
 	text-align: <?php echo is_rtl() ? 'right' : 'left'; ?>;
 }

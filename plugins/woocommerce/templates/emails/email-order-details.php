@@ -36,7 +36,7 @@ do_action( 'woocommerce_email_before_order_table', $order, $sent_to_admin, $plai
 	?>
 </h2>
 
-<div style="margin-bottom: 40px;">
+<div style="margin-bottom: 24px;">
 	<table class="td font-family order-details" cellspacing="0" cellpadding="6" style="width: 100%;" border="1">
 		<tbody>
 			<?php

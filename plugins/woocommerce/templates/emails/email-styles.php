@@ -184,7 +184,7 @@ body {
 #body_content_inner {
 	color: <?php echo esc_attr( $text_lighter_20 ); ?>;
 	font-family: <?php echo esc_attr( $font_family ); ?>;
-	font-size: 14px;
+	font-size: 16px;
 	line-height: 150%;
 	text-align: <?php echo is_rtl() ? 'right' : 'left'; ?>;
 }

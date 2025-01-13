@@ -37,7 +37,7 @@ do_action( 'woocommerce_email_before_order_table', $order, $sent_to_admin, $plai
 </h2>
 
 <div style="margin-bottom: 40px;">
-	<table class="td font-family" cellspacing="0" cellpadding="6" style="width: 100%;" border="1">
+	<table class="td font-family order-details" cellspacing="0" cellpadding="6" style="width: 100%;" border="1">
 		<tbody>
 			<?php
 			echo wc_get_email_order_items( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped

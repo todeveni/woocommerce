@@ -68,8 +68,9 @@ foreach ( $items as $item_id => $item ) :
 
 		?>
 		</td>
-		<td class="td font-family text-align-left" style="vertical-align:middle;">
+		<td class="td font-family text-align-right" style="vertical-align:middle;">
 			<?php
+			echo '&times;';
 			$qty          = $item->get_quantity();
 			$refunded_qty = $order->get_qty_refunded_for_item( $item_id );
 
@@ -81,7 +82,7 @@ foreach ( $items as $item_id => $item ) :
 			echo wp_kses_post( apply_filters( 'woocommerce_email_order_item_quantity', $qty_display, $item ) );
 			?>
 		</td>
-		<td class="td font-family text-align-left" style="vertical-align:middle;">
+		<td class="td font-family text-align-right" style="vertical-align:middle;">
 			<?php echo wp_kses_post( $order->get_formatted_line_subtotal( $item ) ); ?>
 		</td>
 	</tr>

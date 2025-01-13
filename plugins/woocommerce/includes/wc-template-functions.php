@@ -3570,7 +3570,7 @@ if ( ! function_exists( 'wc_get_email_order_items' ) ) {
 		$defaults = array(
 			'show_sku'      => false,
 			'show_image'    => true,
-			'image_size'    => array( 32, 32 ),
+			'image_size'    => array( 48, 48 ),
 			'plain_text'    => false,
 			'sent_to_admin' => false,
 		);

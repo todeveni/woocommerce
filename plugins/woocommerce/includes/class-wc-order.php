@@ -2403,9 +2403,9 @@ class WC_Order extends WC_Abstract_Order {
 		$this->add_order_item_totals_shipping_row( $total_rows, $tax_display );
 		$this->add_order_item_totals_fee_rows( $total_rows, $tax_display );
 		$this->add_order_item_totals_tax_rows( $total_rows, $tax_display );
-		$this->add_order_item_totals_payment_method_row( $total_rows, $tax_display );
 		$this->add_order_item_totals_refund_rows( $total_rows, $tax_display );
 		$this->add_order_item_totals_total_row( $total_rows, $tax_display );
+		$this->add_order_item_totals_payment_method_row( $total_rows, $tax_display );
 
 		return apply_filters( 'woocommerce_get_order_item_totals', $total_rows, $this, $tax_display );
 	}

@@ -54,16 +54,18 @@ do_action( 'woocommerce_email_before_order_table', $order, $sent_to_admin, $plai
 		</tbody>
 		<tfoot>
 			<?php
-			$item_totals = $order->get_order_item_totals();
+			$item_totals       = $order->get_order_item_totals();
+			$item_totals_count = count( $item_totals );
 
 			if ( $item_totals ) {
 				$i = 0;
 				foreach ( $item_totals as $total ) {
 					$i++;
+					$last_class = ( $i === $item_totals_count ) ? ' order-totals-last' : '';
 					?>
-					<tr class="order-totals order-totals-<?php echo esc_attr( $total['type'] ?? 'unknown' ); ?>">
+					<tr class="order-totals order-totals-<?php echo esc_attr( $total['type'] ?? 'unknown' ); ?><?php echo esc_attr( $last_class ); ?>">
 						<th class="td text-align-left" scope="row" colspan="2" style="<?php echo ( 1 === $i ) ? 'border-top-width: 4px;' : ''; ?>"><?php echo wp_kses_post( $total['label'] ); ?></th>
-						<td class="td text-align-left" style="<?php echo ( 1 === $i ) ? 'border-top-width: 4px;' : ''; ?>"><?php echo wp_kses_post( $total['value'] ); ?></td>
+						<td class="td text-align-right" style="<?php echo ( 1 === $i ) ? 'border-top-width: 4px;' : ''; ?>"><?php echo wp_kses_post( $total['value'] ); ?></td>
 					</tr>
 					<?php
 				}
